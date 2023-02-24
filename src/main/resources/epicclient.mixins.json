@@ -1,0 +1,16 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "apollointhehouse.epicclient.mixins",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "GameSettingsMixin",
+        "StringTranslateMixin",
+        "SpeedOverlayMixin"
+    ],
+    "client": [
+    ],
+    "injectors": {
+        "defaultRequire": 1
+  }
+}

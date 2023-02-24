@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "epicclient",
+  "version": "${version}",
+
+  "name": "Example Mod",
+  "description": "Makes the game 10x more epic.",
+  "authors": [
+    "Apollointhehouse"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "CC0-1.0",
+
+  "environment": "*",
+  "entrypoints": {
+    "preLaunch": [
+      "com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
+    ],
+    "main": [
+      "apollointhehouse.epicclient.EpicClient"
+    ]
+  },
+  "mixins": [
+    "epicclient.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.13.3"
+  },
+  "suggests": {
+  }
+}
