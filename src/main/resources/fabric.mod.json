@@ -3,7 +3,7 @@
   "id": "epicclient",
   "version": "${version}",
 
-  "name": "Example Mod",
+  "name": "EpicClient",
   "description": "Makes the game 10x more epic.",
   "authors": [
     "Apollointhehouse"

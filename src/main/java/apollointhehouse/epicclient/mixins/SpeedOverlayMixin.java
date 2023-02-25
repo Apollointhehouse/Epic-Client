@@ -75,15 +75,15 @@ public class SpeedOverlayMixin {
         }
         if (renderSpeedometer) {
             GuiIngame guiIngame = (GuiIngame) (Object) this;
-            guiIngame.drawString(this.mc.fontRenderer, "X Velocity: " + calculateXVelocity(this.mc.thePlayer), this.tsp, this.tsp + 13 * this.line, 0xFFFFFF);
+            guiIngame.drawString(this.mc.fontRenderer, "X Velocity: " + calculateXVelocity(this.mc.thePlayer), this.tsp, this.tsp + 6 * 10, 0xFFFFFF);
         }
         if (renderSpeedometer) {
             GuiIngame guiIngame = (GuiIngame) (Object) this;
-            guiIngame.drawString(this.mc.fontRenderer, "Y Velocity: " + calculateYVelocity(this.mc.thePlayer), this.tsp, this.tsp + 16 * this.line, 0xFFFFFF);
+            guiIngame.drawString(this.mc.fontRenderer, "Y Velocity: " + calculateYVelocity(this.mc.thePlayer), this.tsp, this.tsp + 7 * 10, 0xFFFFFF);
         }
         if (renderSpeedometer) {
             GuiIngame guiIngame = (GuiIngame) (Object) this;
-            guiIngame.drawString(this.mc.fontRenderer, "Z Velocity: " + calculateZVelocity(this.mc.thePlayer), this.tsp, this.tsp + 19 * this.line, 0xFFFFFF);
+            guiIngame.drawString(this.mc.fontRenderer, "Z Velocity: " + calculateZVelocity(this.mc.thePlayer), this.tsp, this.tsp + 8 * 10, 0xFFFFFF);
         }
     }
 
