@@ -6,7 +6,8 @@
     "mixins": [
         "GameSettingsMixin",
         "StringTranslateMixin",
-        "SpeedOverlayMixin"
+        "SpeedOverlayMixin",
+        "EntitesOverlayMixin"
     ],
     "client": [
     ],
