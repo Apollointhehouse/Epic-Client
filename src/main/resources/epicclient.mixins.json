@@ -7,7 +7,8 @@
         "GameSettingsMixin",
         "StringTranslateMixin",
         "SpeedOverlayMixin",
-        "EntitesOverlayMixin"
+        "EntitesOverlayMixin",
+        "TileEntitesOverlayMixin"
     ],
     "client": [
     ],
