@@ -1,5 +1,6 @@
 package apollointhehouse.epicclient.mixins;
 
+import apollointhehouse.epicclient.IKeybinds;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.*;
@@ -27,6 +28,10 @@ public class TileEntitesOverlayMixin {
 
     @Unique
     private int line;
+
+    private boolean shouldDrawEntityOverlay = true;
+
+    private boolean getViewChestOverlayLast;
 
     @SuppressWarnings("InvalidInjectorMethodSignature")
     @Inject(method = "renderGameOverlay",
@@ -62,33 +67,37 @@ public class TileEntitesOverlayMixin {
         this.line = line;
     }
 
+    private void drawEntityOverlay() {
+
+        GuiIngame guiIngame = (GuiIngame) (Object) this;
+        List<TileEntity> loadedTileEntities = mc.theWorld.loadedTileEntityList;
+        int chestCount = 0;
+
+        for (int i = 0; i < loadedTileEntities.size(); i++) {
+            TileEntity tileEntity = loadedTileEntities.get(i);
+
+            if (tileEntity instanceof TileEntityChest) {
+                TileEntityChest chest = (TileEntityChest) tileEntity;
+                String coordStr = "Chest at (" + chest.xCoord + ", " + chest.yCoord + ", " + chest.zCoord + ")";
+                guiIngame.drawString(mc.fontRenderer, coordStr, tsp, tsp + 230 + this.line * 10 + chestCount * 10, 0xFFFFFF);
+                chestCount++;
+            }
+        }
+
+        guiIngame.drawString(mc.fontRenderer, "Found " + chestCount + " chests:", tsp, tsp + 220 + this.line * 10, 0xFFFFFF);
+    }
+
     @Inject(method = "renderGameOverlay", at = @At(value = "FIELD", target = "Lnet/minecraft/src/GameSettings;armorDurabilityOverlay:Lnet/minecraft/src/option/BooleanOption;"))
     private void renderGameOverlay(float partialTicks, boolean flag, int mouseX, int mouseY, CallbackInfo ci) {
         if (this.mc.gameSettings.showDebugScreen.value) {
             return;
         }
+        boolean getViewChestOverlay = (((IKeybinds) this.mc.gameSettings).getViewChestOverlay().isPressed());
 
-        boolean TileEntitesOverlay = true;
-        if (TileEntitesOverlay) {
-            GuiIngame guiIngame = (GuiIngame) (Object) this;
-            List<TileEntity> loadedTileEntities = mc.theWorld.loadedTileEntityList;
-            int chestCount = 0;
-
-            for (int i = 0; i < loadedTileEntities.size(); i++) {
-                TileEntity tileEntity = loadedTileEntities.get(i);
-
-                if (tileEntity instanceof TileEntityChest) {
-                    TileEntityChest chest = (TileEntityChest) tileEntity;
-                    String coordStr = "Chest at (" + chest.xCoord + ", " + chest.yCoord + ", " + chest.zCoord + ")";
-                    guiIngame.drawString(mc.fontRenderer, coordStr, tsp, tsp + 230 + this.line * 10 + chestCount * 10, 0xFFFFFF);
-                    chestCount++;
-                }
-            }
-
-            guiIngame.drawString(mc.fontRenderer, "Found " + chestCount + " chests:", tsp, tsp + 220 + this.line * 10, 0xFFFFFF);
+        if (getViewChestOverlay != getViewChestOverlayLast && getViewChestOverlay) shouldDrawEntityOverlay = !shouldDrawEntityOverlay; {
+            if (shouldDrawEntityOverlay) drawEntityOverlay();
+            getViewChestOverlayLast = getViewChestOverlay;
 
         }
-
-
     }
 }

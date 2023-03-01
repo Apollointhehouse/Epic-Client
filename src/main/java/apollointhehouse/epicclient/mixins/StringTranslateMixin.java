@@ -18,7 +18,8 @@ import java.util.Properties;
   Wacky hack to register keybind translation keys since it isn't done properly, apparently.
  */
 public abstract class StringTranslateMixin {
-    @Shadow private Properties translateTable;
+    @Shadow
+    private Properties translateTable;
 
     @Shadow
     public static StringTranslate getInstance() {
@@ -29,7 +30,11 @@ public abstract class StringTranslateMixin {
             method = "<init>",
             at = @At("RETURN")
     )
-    private void init(CallbackInfo ci){
-        translateTable.put("key.viewutility", "View Utility Menu");
+    private void init(CallbackInfo ci) {
+        translateTable.put("key.ViewChestOverlay", "Chest Overlay");
     }
+
+
 }
+
+

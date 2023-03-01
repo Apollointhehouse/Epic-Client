@@ -9,9 +9,9 @@ import net.minecraft.src.GameSettings;
 public class GameSettingsMixin
     implements IKeybinds
 {
-public KeyBinding KeyUtility = new KeyBinding("key.viewutility", 38);
-public KeyBinding getKeyUtility() {
-    return KeyUtility;
+public KeyBinding ViewChestOverlay = new KeyBinding("key.ViewChestOverlay", 38);
+public KeyBinding getViewChestOverlay() {
+    return ViewChestOverlay;
 }
 
 }
